@@ -1,0 +1,125 @@
+.game-list {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-list.loading {
+  text-align: center;
+  color: #6b7280;
+  padding: 3rem;
+}
+
+.game-list h2 {
+  margin-bottom: 1.5rem;
+  color: #667eea;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.game-card {
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.game-card:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.game-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.game-id {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.game-status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.game-status-badge.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.game-status-badge.completed {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.game-matchup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 8px;
+}
+
+.matchup-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.player-model {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+  word-break: break-word;
+}
+
+.matchup-vs {
+  font-weight: bold;
+  color: #667eea;
+  font-size: 0.85rem;
+  padding: 0 0.5rem;
+}
+
+.game-result {
+  text-align: center;
+  padding: 0.5rem;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+}
