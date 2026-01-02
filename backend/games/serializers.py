@@ -6,7 +6,7 @@ class MoveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Move
         fields = ['id', 'move_number', 'uci_move', 'san_move', 'fen_after',
-                  'player', 'model_used', 'thinking', 'created_at']
+                  'player', 'model_used', 'reasoning', 'thinking', 'created_at']
 
 
 class GameSerializer(serializers.ModelSerializer):
@@ -14,7 +14,8 @@ class GameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Game
-        fields = ['id', 'white_model', 'black_model', 'fen', 'pgn', 'status',
+        fields = ['id', 'white_model', 'black_model', 'white_reasoning_effort',
+                  'black_reasoning_effort', 'fen', 'pgn', 'status',
                   'result', 'created_at', 'updated_at', 'moves']
         read_only_fields = ['fen', 'pgn', 'status', 'result', 'created_at', 'updated_at']
 
@@ -22,3 +23,5 @@ class GameSerializer(serializers.ModelSerializer):
 class CreateGameSerializer(serializers.Serializer):
     white_model = serializers.CharField(max_length=200)
     black_model = serializers.CharField(max_length=200)
+    white_reasoning_effort = serializers.CharField(max_length=20, default='medium')
+    black_reasoning_effort = serializers.CharField(max_length=20, default='medium')

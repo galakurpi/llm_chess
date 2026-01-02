@@ -62,7 +62,10 @@ function App() {
           <>
             {view === 'setup' ? (
               <>
-                <GameSetup apiKey={apiKey} onGameCreated={handleGameCreated} />
+                <GameSetup 
+                  apiKey={apiKey} 
+                  onGameCreated={handleGameCreated}
+                />
                 <GameList apiKey={apiKey} onSelectGame={handleSelectGame} />
               </>
             ) : (
@@ -76,10 +79,6 @@ function App() {
           </>
         )}
       </div>
-
-      <footer className="App-footer">
-        <p>Built with React + Django + OpenRouter</p>
-      </footer>
     </div>
   );
 }

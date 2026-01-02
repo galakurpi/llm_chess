@@ -58,6 +58,12 @@
   font-size: 0.9rem;
 }
 
+.player-effort {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 400;
+}
+
 .board-container {
   display: flex;
   justify-content: center;
@@ -159,11 +165,91 @@
   font-size: 1rem;
 }
 
+.move-model {
+  font-size: 0.75rem;
+  color: #667eea;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
 .move-thinking {
   font-size: 0.85rem;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-top: 0.25rem;
+}
+
+.move-thinking.streaming {
+  color: #667eea;
+}
+
+.move-reasoning-container {
+  margin-top: 0.5rem;
+}
+
+.move-reasoning {
+  font-size: 0.8rem;
   color: #6b7280;
-  line-height: 1.4;
+  line-height: 1.5;
   font-style: italic;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  background: rgba(102, 126, 234, 0.05);
+  border-left: 2px solid #667eea;
+  border-radius: 0 4px 4px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.move-reasoning.streaming {
+  max-height: 300px;
+}
+
+.reasoning-label {
+  font-size: 0.75rem;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.expand-btn {
+  display: inline-block;
+  background: none;
+  border: none;
+  color: #667eea;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.expand-btn:hover {
+  color: #5a67d8;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 4px;
+}
+
+/* Pending/streaming move */
+.move-item.pending {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
+  border: 1px dashed #667eea;
+}
+
+.streaming-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #667eea;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
 }
 
 .no-moves {

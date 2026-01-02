@@ -54,12 +54,65 @@
   border-color: #667eea;
 }
 
+.effort-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  margin-top: 0.25rem;
+}
+
+.effort-select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
 .vs-divider {
   font-weight: bold;
   font-size: 1.5rem;
   color: #667eea;
   padding-bottom: 0.75rem;
   text-align: center;
+}
+
+.reasoning-section {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.reasoning-section label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.reasoning-select {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  min-width: 250px;
+  cursor: pointer;
+}
+
+.reasoning-select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.reasoning-hint {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .error-message {

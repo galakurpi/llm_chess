@@ -9,8 +9,19 @@ class Game(models.Model):
         ('completed', 'Completed'),
     ]
 
+    EFFORT_CHOICES = [
+        ('none', 'None'),
+        ('minimal', 'Minimal'),
+        ('low', 'Low'),
+        ('medium', 'Medium'),
+        ('high', 'High'),
+        ('xhigh', 'Extra High'),
+    ]
+
     white_model = models.CharField(max_length=200)
     black_model = models.CharField(max_length=200)
+    white_reasoning_effort = models.CharField(max_length=20, choices=EFFORT_CHOICES, default='medium')
+    black_reasoning_effort = models.CharField(max_length=20, choices=EFFORT_CHOICES, default='medium')
     fen = models.TextField(default=chess.STARTING_FEN)
     pgn = models.TextField(blank=True, default='')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
@@ -33,7 +44,8 @@ class Move(models.Model):
     fen_after = models.TextField()
     player = models.CharField(max_length=10)  # 'white' or 'black'
     model_used = models.CharField(max_length=200)
-    thinking = models.TextField(blank=True, default='')
+    reasoning = models.TextField(blank=True, default='')  # Internal reasoning tokens from reasoning models
+    thinking = models.TextField(blank=True, default='')   # Model's explanation for the move (REASON: output)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

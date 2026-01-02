@@ -6,8 +6,25 @@ function GameSetup({ apiKey, onGameCreated }) {
   const [models, setModels] = useState([]);
   const [whiteModel, setWhiteModel] = useState('');
   const [blackModel, setBlackModel] = useState('');
+  const [whiteReasoningEffort, setWhiteReasoningEffort] = useState('medium');
+  const [blackReasoningEffort, setBlackReasoningEffort] = useState('medium');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  const reasoningOptions = [
+    { value: 'none', label: 'None (fastest)' },
+    { value: 'minimal', label: 'Minimal' },
+    { value: 'low', label: 'Low' },
+    { value: 'medium', label: 'Medium' },
+    { value: 'high', label: 'High' },
+    { value: 'xhigh', label: 'Extra High' },
+  ];
+
+  // Check if a model supports reasoning effort
+  const modelSupportsEffort = (modelId) => {
+    const model = models.find(m => m.id === modelId);
+    return model?.supports_effort || false;
+  };
 
   useEffect(() => {
     fetchModels();
@@ -39,6 +56,8 @@ function GameSetup({ apiKey, onGameCreated }) {
       const response = await axios.post('/api/games/', {
         white_model: whiteModel,
         black_model: blackModel,
+        white_reasoning_effort: whiteReasoningEffort,
+        black_reasoning_effort: blackReasoningEffort,
       });
 
       onGameCreated(response.data);
@@ -70,6 +89,19 @@ function GameSetup({ apiKey, onGameCreated }) {
               </option>
             ))}
           </select>
+          {modelSupportsEffort(whiteModel) && (
+            <select
+              value={whiteReasoningEffort}
+              onChange={(e) => setWhiteReasoningEffort(e.target.value)}
+              className="effort-select"
+            >
+              {reasoningOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
 
         <div className="vs-divider">VS</div>
@@ -90,8 +122,27 @@ function GameSetup({ apiKey, onGameCreated }) {
               </option>
             ))}
           </select>
+          {modelSupportsEffort(blackModel) && (
+            <select
+              value={blackReasoningEffort}
+              onChange={(e) => setBlackReasoningEffort(e.target.value)}
+              className="effort-select"
+            >
+              {reasoningOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
       </div>
+
+      {(modelSupportsEffort(whiteModel) || modelSupportsEffort(blackModel)) && (
+        <p className="reasoning-hint">
+          Reasoning effort: higher = better moves but slower and more expensive.
+        </p>
+      )}
 
       {error && <div className="error-message">{error}</div>}
 
